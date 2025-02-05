@@ -1,0 +1,26 @@
+#!/bin/bash
+
+target_dir="/opt/281024-wdm/Anastasiia_Posokhova/currentdate"
+new_dir="/opt/281024-wdm/Anastasiia_Posokhova/new_dir"
+
+current_date=$(date +'%H:%M:%S')
+processes_counter=$(ps -ef | wc -l)
+processor_info=$(cat /proc/cpuinfo)
+os_data=$(cat /etc/os-release | head -1)
+os_data_short=$(cat /etc/os-release | head -1 | awk -F= '{print $2}' | awk '{print $1}' | tr -d '"')
+
+for i in {1..10}; do
+        {
+        echo "Дата: $current_date Количество исполняемых процессов: $processes_counter"
+        echo "Информация о процессоре: $processor_info"
+        echo "Данные о системе: $os_data"
+        echo "Имя системы: $os_data_short"
+        } > "$target_dir/$i.txt";
+        sleep 0.5
+done;
+
+for i in {50..100}; do
+        touch $new_dir/$i.txt;
+done;
+
+echo 'SCRIPT FINISH'

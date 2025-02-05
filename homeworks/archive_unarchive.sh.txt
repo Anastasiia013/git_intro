@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+ARTHPATH=.
+EXTPATH=./unarchive_folder
+DATE=`date '+d%-%m-%y'`
+echo $DATE
+for i in {1..5}
+do
+        mkdir -p Dir$i
+        echo "Directory Dir$i created"
+        for j in {1..5}
+        do
+                date +'%H-%M-%S' > Dir$i/File-$j.txt
+                echo "file File-$j.txt created"
+        done
+        echo "Dir$i contains:"
+        ls Dir$i
+        sleep 1
+done
+
+tar -czvf $ARTHPATH/Arh-$DATE.tar.gz Dir* >> Arhlist.txt
+echo 'files archived'
+sleep 3
+
+mkdir -p  $EXTPATH
+tar -xzf $ARTHPATH/Arh-$DATE.tar.gz -C $EXTPATH
+echo 'files unarchived'
