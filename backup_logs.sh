@@ -18,5 +18,5 @@ tar -czf "$ARCHIVE" "$LOG_DIR/$LOG_FILE"
 echo "" > "$LOG_DIR/$LOG_FILE"
 
 # Удаляем архивы, которым более 3 дней
-find "$BACKUP_DIR" -type f -name "$LOG_FILE-*.tar.gz" -mtime +3 -exec rm {} \;
+find "$BACKUP_DIR" -type f -name "$LOG_FILE-*.tar.gz" -mtime +3 -delete;
 
